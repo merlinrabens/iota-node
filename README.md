@@ -13,4 +13,4 @@ Dockerized IOTA full node
 
 ## Run
 
-    docker run -d -p 14265:14265 -e "NEIGHBORS=udp://neighbor_1 udp://neighbor_2" --name iota-node iota-node
+    docker run -d -p 14265:14265 -e "NEIGHBORS=udp://neighbor_1 udp://neighbor_2" -v path_to_your_data_folder:/opt/iri/data --name iota-node iota-node

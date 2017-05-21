@@ -1,8 +1,6 @@
 FROM java:8
 
 ADD bin /opt/iri/bin
-ADD conf /opt/iri/conf
-ADD data /opt/iri/data
 WORKDIR /opt/iri/data
 
 EXPOSE 14256
