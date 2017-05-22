@@ -5,7 +5,7 @@ Dockerized IOTA Full Node
   * Will be provided soon!
 
 ## Install
-`docker build -t bluedigits/iota-node .
+`docker build -t bluedigits/iota-node .`
 
 ## Run
 `docker run -d -p 14265:14265 -e "NEIGHBORS=udp://neighbor_1 udp://neighbor_2" --name iota-node bluedigits/iota-node`
