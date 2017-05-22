@@ -5,7 +5,7 @@ Dockerized IOTA Full Node
 `docker build -t bluedigits/iota-node .`
 
 ## Run
-`docker run -d -p 14265:14265 -e "NEIGHBORS=udp://neighbor_1 udp://neighbor_2" --name iota-node bluedigits/iota-node`
+`docker run -d -p 14265:14265 -p 14265:14265/udp -e "NEIGHBORS=udp://neighbor_1 udp://neighbor_2" --name iota-node bluedigits/iota-node`
 
 ## Note
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`
