@@ -5,4 +5,4 @@ WORKDIR /opt/iri/data
 
 EXPOSE 14265
 
-ENTRYPOINT java -jar ../bin/iri-1.1.2.6.jar -p 14265 -n "$NEIGHBORS" --data-dir /opt/iri/data -d -r 14265 -c 0.0.0.0/0 --remote --remote-limit-api "attachToTangle, addNeighbors, removeNeighbors"
+CMD java $JAVA_OPTIONS -jar -Djava.net.preferIPv4Stack=true ../bin/iri-1.1.4.2.jar -p 14265 -n "$NEIGHBORS" --remote --remote-limit-api "attachToTangle, addNeighbors, removeNeighbors"
