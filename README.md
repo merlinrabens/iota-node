@@ -23,5 +23,5 @@ udp://neighbor2:14600
 ```
 
 ## Sync data:
-You might have a compressed backup of transaction data. If so, you can extract them into the dedicatd data folder before running your node.
+You might have a compressed backup of transaction data. If so, you can extract data into the dedicated data folder before running your node.
 
