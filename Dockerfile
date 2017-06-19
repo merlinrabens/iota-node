@@ -1,8 +1,22 @@
-FROM java:8
+FROM maven:3.5-jdk-8
 
-ADD bin /opt/iri/bin
-WORKDIR /opt/iri/data
+RUN apt-get update && apt-get install -y netcat
+
+WORKDIR /iri
+
+RUN git clone -b v1.2.1 https://github.com/iotaledger/iri.git /iri/
+RUN mvn clean package
+
+COPY conf /iri/conf
+COPY /docker-entrypoint.sh /
+
+WORKDIR /iri/data
+
+VOLUME /iri/data
 
 EXPOSE 14265
+EXPOSE 14777/udp
+EXPOSE 15777
 
-CMD java $JAVA_OPTIONS -jar -Djava.net.preferIPv4Stack=true ../bin/iri-1.1.4.2.jar -p 14265 -n "$NEIGHBORS" --remote --remote-limit-api "attachToTangle, addNeighbors, removeNeighbors"
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
