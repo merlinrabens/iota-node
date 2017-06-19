@@ -17,8 +17,10 @@ The syncing process takes a while so be patient. You can watch the logging with:
 Please specify the neighbors by adding the udp or tcp IPs and the corresponding ports to the neighbors file, one per line.
 
 Example:
-`udp://neighbor1:14600
-udp://neighbor2:14600`
+```
+udp://neighbor1:14600
+udp://neighbor2:14600
+```
 
 ## Sync data:
 You might have a compressed backup of transaction data. If so, you can extract them into the dedicatd data folder before running your node.
