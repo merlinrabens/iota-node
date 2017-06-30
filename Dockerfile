@@ -1,7 +1,5 @@
 FROM maven:3.5-jdk-8
 
-RUN apt-get update && apt-get install -y netcat
-
 WORKDIR /iri
 
 RUN git clone -b v1.2.2 https://github.com/iotaledger/iri.git /iri/
