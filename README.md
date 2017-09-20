@@ -8,7 +8,7 @@ Dockerized IOTA Full Node
 1. Create a text file with all neighbors IPs, one neighbor per line.
 2. Create a folder where IRI can store it's data.
 3. Invoke docker run as follows:
-`docker run -d --net=host --name iota-node -p 14265:14265 -p 14777:14777/udp -p 15777:15777 -v data_dir_filepath:/iri/data -v neighbors_filepath:/iri/conf/neighbors bluedigits/iota-node:latest`
+`docker run -d --net=host --name iota-node -v data_dir_filepath:/iri/data -v neighbors_filepath:/iri/conf/neighbors bluedigits/iota-node:latest`
 
 ## Note
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`
