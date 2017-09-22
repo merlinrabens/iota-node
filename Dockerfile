@@ -15,9 +15,5 @@ WORKDIR /iri/data
 VOLUME /iri/data
 VOLUME /iri/conf
 
-EXPOSE 14265
-EXPOSE 14777/udp
-EXPOSE 15777
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
