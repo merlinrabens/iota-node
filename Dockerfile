@@ -2,7 +2,7 @@ FROM maven:3.5-jdk-8
 
 WORKDIR /iri
 
-RUN git clone https://github.com/iotaledger/iri.git /iri/
+RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
 RUN mvn clean package
 
 COPY conf/* /iri/conf/
