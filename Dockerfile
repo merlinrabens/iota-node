@@ -14,7 +14,8 @@ RUN mvn clean package
 COPY conf/* /iri/conf/
 COPY /docker-entrypoint.sh /
 
-ENV MEMORY 2G
+ENV MIN_MEMORY 2G
+ENV MAX_MEMORY 4G
 
 WORKDIR /iri/data
 
