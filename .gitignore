@@ -1,4 +1,4 @@
 conf/neighbors
 .idea/
 *.iml
-bin/config.sh
+config.sh

@@ -1,6 +1,0 @@
-data_volume="/var/lib/docker/volumes/1d3ad953084eaa3e5e1cb12a614a0b24d581e2e022d3071e52a5a8af60582d7b/_data"
-conf_volume="/var/lib/docker/volumes/7c3711daeb8b4979757820b9496a61062f8bb354e09bbb61e892a2194233f850/_data"
-export data_volume conf_volume
-
-docker run -d --name iota-node -p 14265:14265 -p 14777:14777/udp -p 15777:15777 -v $data_volume:/iri/data -v $conf_volume:/iri/conf --env MIN_MEMORY=2g --env MAX_MEMORY=4g iota-node:latest
-docker update --restart=always iota-node 
