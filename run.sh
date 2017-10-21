@@ -1,0 +1,1 @@
+docker run -d --name iota-node -p 14265:14265 -p 14777:14777/udp -p 15777:15777 -v $data_volume:/iri/data -v $conf_volume:/iri/conf --env MIN_MEMORY=2g --env MAX_MEMORY=4g --restart=always iota-node:latest

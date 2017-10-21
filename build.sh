@@ -1,9 +1,18 @@
-cd /root
-docker build iota-node --tag iota-node:latest
-#docker build iota-node --no-cache --tag iota-node:latest
+version=$1
+push=$2
 
-read -p "Username:" username
-read -p "Password:" password
-docker login --username $username --password-stdin $password
-docker tag iota-node kaidehling/iota-node:latest
-docker push kaidehling/iota-node:latest
+if [ "" = "$version" ]
+then
+	version=latest
+fi
+
+cd .. 
+docker build iota-node --tag iota-node:$version
+
+if [ "--push" = "$push" ]
+then
+	read -p "Username:" username
+	docker login --username=$username
+	docker tag iota-node $username/iota-node:$version
+	docker push $username/iota-node:$version
+fi
