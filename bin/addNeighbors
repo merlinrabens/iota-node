@@ -1,2 +1,5 @@
+neighbor=$@
+echo $neighbor >> $conf_volume/neighbors
+
 uris="'$@'"
 curl http://localhost:14265 -d "{'command': 'addNeighbors', 'uris': [ $uris ] }"
