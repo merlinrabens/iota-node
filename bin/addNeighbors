@@ -2,4 +2,4 @@ neighbor=$@
 echo $neighbor >> $conf_volume/neighbors
 
 uris="'$@'"
-curl http://localhost:14265 -d "{'command': 'addNeighbors', 'uris': [ $uris ] }"
+curl --header "X-IOTA-API-VERSION: 1.4.1" http://localhost:14265 -d "{'command': 'addNeighbors', 'uris': [ $uris ] }"
