@@ -24,6 +24,9 @@ ENV API_PORT 14265
 ENV UDP_PORT 14600
 ENV TCP_PORT 15600
 
+# default remote api limitations
+ENV REMOTE_API_LIMIT "attachToTangle, addNeighbors, removeNeighbors"	 
+
 VOLUME /iri/data
 VOLUME /iri/conf
 
