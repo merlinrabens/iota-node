@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
 	&& rm -rf /var/lib/apt/lists/*
 
-
 WORKDIR /iri
 
 RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
