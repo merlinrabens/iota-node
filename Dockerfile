@@ -1,6 +1,6 @@
 FROM maven:3.5-jdk-9-slim as build
 
-# procps is very common in build systems, and is a reasonably small package
+# install build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
 	&& rm -rf /var/lib/apt/lists/*
@@ -15,10 +15,14 @@ FROM openjdk:9-jre-slim
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
-COPY /docker-entrypoint.sh /
+COPY docker-entrypoint.sh /
 
 ENV MIN_MEMORY 2G
 ENV MAX_MEMORY 4G
+
+ENV API_PORT 14265
+ENV UDP_PORT 14600
+ENV TCP_PORT 15600
 
 VOLUME /iri/data
 VOLUME /iri/conf
