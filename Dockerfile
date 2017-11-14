@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /iri
 
-RUN git clone -b v1.4.1.2 https://github.com/iotaledger/iri.git /iri/ 
+RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
 RUN mvn clean package
 
 # execution image
@@ -25,4 +25,3 @@ VOLUME /iri/data
 VOLUME /iri/conf
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
