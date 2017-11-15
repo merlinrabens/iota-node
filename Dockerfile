@@ -24,6 +24,11 @@ ENV API_PORT 14265
 ENV UDP_PORT 14600
 ENV TCP_PORT 15600
 
+# mark ports for expose
+EXPOSE $API_PORT
+EXPOSE $UDP_PORT/UDP
+EXPOSE $TCP_PORT
+
 # default remote api limitations
 ENV REMOTE_API_LIMIT "attachToTangle, addNeighbors, removeNeighbors"	 
 
