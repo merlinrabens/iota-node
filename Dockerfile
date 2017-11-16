@@ -20,6 +20,8 @@ COPY /docker-entrypoint.sh /
 ENV MIN_MEMORY 2G
 ENV MAX_MEMORY 4G
 
+WORKDIR /iri/data
+
 VOLUME /iri/data
 VOLUME /iri/conf
 
