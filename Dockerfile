@@ -32,6 +32,8 @@ EXPOSE $TCP_PORT
 # default remote api limitations
 ENV REMOTE_API_LIMIT "attachToTangle, addNeighbors, removeNeighbors"	 
 
+WORKDIR /iri/data
+
 VOLUME /iri/data
 VOLUME /iri/conf
 
