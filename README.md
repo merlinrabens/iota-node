@@ -12,9 +12,14 @@ Dockerized IOTA Full Node
 `docker run -d --net=host --name iota-node -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data -v /iri/conf/neighbors:/iri/conf/neighbors bluedigits/iota-node:latest`
 
 ## Additional Parameters
-You can specifiy IRI parameters to the end of your `docker run` command chain, e.g. you want IRI to revalidate it's database, just add `--revalidate`
+You can specifiy IRI parameters to the end of your `docker run` command chain, e.g. you want IRI to revalidate it's database, just add `--revalidate`.
 
 Full command would be then: `docker run -d --net=host --name iota-node -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data -v /iri/conf/neighbors:/iri/conf/neighbors bluedigits/iota-node:latest --revalidate`
+
+## API Limits
+You can forbid API commands you don't want IRI to interpret by specifying another ENV variable named `REMOTE_API_LIMIT`. This is by default set to `"attachToTangle, addNeighbors, removeNeighbors"`.
+
+**Example:** You want IRI to forbid the `getNeighbors` command but to allow anything else, just specify `-e REMOTE_API_LIMIT "getNeighbors"`. Multiple limits have to be comma-separated.
 
 ## Ports
 You can specify a different API port and different UDP/TCP receiver ports by changing the values behind the -e flags when invoking _docker run_.
@@ -23,7 +28,7 @@ You can specify a different API port and different UDP/TCP receiver ports by cha
 * TCP_PORT: The TPC port IRI listens on for mutually exchanging transactions.
 
 ## Note
-The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`
+The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`.
 
 ## Neighbors
 Please specify the neighbors within your `neighbors` file by adding the udp or tcp IPs and the corresponding ports, one per line.
