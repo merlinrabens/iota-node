@@ -24,6 +24,7 @@ You can specify a different API port and different UDP/TCP receiver ports by cha
 
 ## Note
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`
+To revalidate the DB add: "-e REAVLIDATE=true", defaults to "false".
 
 ## Neighbors
 Please specify the neighbors within your `neighbors` file by adding the udp or tcp IPs and the corresponding ports, one per line.
