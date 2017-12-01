@@ -11,7 +11,7 @@ RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
 RUN mvn clean package
 
 # execution image
-FROM openjdk:9-jre-slim
+FROM openjdk:8-jre-slim
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
