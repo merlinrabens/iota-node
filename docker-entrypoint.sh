@@ -6,8 +6,18 @@ for buddy in $(cat /iri/conf/neighbors); do
 done
 neighbors=${neighbors::-1}
 
-p="${API_PORT:-14265}"
-u="${UDP_PORT:-14600}"
-t="${TCP_PORT:-15600}"
-
-exec java --add-modules java.xml.bind -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+DisableAttachMechanism -Xms$MIN_MEMORY -Xmx$MAX_MEMORY -Dlogback.configurationFile=/iri/conf/logback.xml -Djava.net.preferIPv4Stack=true -jar /iri/target/iri*.jar --config /iri/conf/iri.ini --port $p --udp-receiver-port $u --tcp-receiver-port $t --neighbors "$neighbors" --remote --remote-limit-api "$REMOTE_API_LIMIT" "$@"
+exec java \
+  $JAVA_OPTIONS \
+  -Xms$MIN_MEMORY -Xmx$MAX_MEMORY \
+  -Djava.net.preferIPv4Stack=true \
+  -Dlogback.configurationFile=/iri/conf/logback.xml \
+  --add-modules java.xml.bind \
+  -jar /iri/target/iri*.jar \
+  --config /iri/conf/iri.ini \
+  --port $API_PORT \
+  --udp-receiver-port $UDP_PORT \
+  --tcp-receiver-port $TCP_PORT \
+  --remote --remote-limit-api "$REMOTE_API_LIMIT" \
+  --neighbors "$neighbors" \
+  "$@"
+  

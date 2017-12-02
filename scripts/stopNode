@@ -1,0 +1,7 @@
+docker update --restart=no iota-node
+
+# Send SIGINT signal to iri process for shutdown
+docker kill --signal SIGINT iota-node
+
+# Watch log until tangle had shutdown
+docker logs -f --since 1m iota-node
