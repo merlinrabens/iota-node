@@ -27,6 +27,11 @@ You can specify a different API port and different UDP/TCP receiver ports by cha
 * UDP_PORT: The UDP port IRI listens on for mutually exchanging transactions.
 * TCP_PORT: The TPC port IRI listens on for mutually exchanging transactions.
 
+## Java Options
+You can specify a custom set of Java JVM arguments by adding the environment variable JAVA_OPTIONS when invoking _docker run_. Please note that you have to include the defaults for JAVA_OPTIONS if you don't want to remove them!
+Example: `docker run [...] -e JAVA_OPTIONS="-XX:-PrintCommandLineFlags -XX:-PrintGCDetails -Xlog:gc:garbage-collection.log" bluedigits/iota-node`
+* JAVA_OPTIONS: JVM Options which are passed to the java process
+
 ## Note
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`.
 
