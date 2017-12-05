@@ -1,13 +1,16 @@
+read -p "Hostname: " hostname
+
 docker run -d --name iota-node \
     -p 14265:14265 -p 14777:14777/udp -p 15777:15777 \
     --env API_PORT=14265 --env UDP_PORT=14777 --env TCP_PORT=15777 \
     -v $data_volume:/iri/data -v $conf_volume:/iri/conf \
     --env MIN_MEMORY=2g --env MAX_MEMORY=4g \
     --restart=no \
-    --env JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError \
+    --env JAVA_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n \
+	-XX:+HeapDumpOnOutOfMemoryError \
         -XX:-PrintCommandLineFlags \
         -XX:-PrintGCDetails -Xlog:gc:garbage-collection.log \
-        -Dcom.sun.management.jmxremote.port=15778 -Dcom.sun.management.jmxremote.rmi.port=15779 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false" \
-    -p 15778:15778 -p 15779:15779 \
-    bluedigits/iota-node:latest \
+        -Djava.rmi.server.hostname=$hostname -Dcom.sun.management.jmxremote.port=15778 -Dcom.sun.management.jmxremote.rmi.port=15779 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false" \
+    -p 8000:8000 -p 15778:15778 -p 15779:15779 \
+    iota-node:latest \
     "$@"
