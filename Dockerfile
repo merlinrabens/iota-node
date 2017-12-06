@@ -19,10 +19,6 @@ COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
 COPY docker-entrypoint.sh /
 
-# Default java memory settings
-ENV MIN_MEMORY 2G
-ENV MAX_MEMORY 4G
-
 # Allow change of ports in the container.
 # See Issue #2 for description why this is needed (https://github.com/bluedigits/iota-node/issues/2)
 ENV API_PORT 14265
