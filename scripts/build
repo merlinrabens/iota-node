@@ -6,7 +6,7 @@ then
 	version=latest
 fi
 
-cd .. 
+cd ../..
 docker build iota-node --tag iota-node:$version
 
 if [ "--push" = "$push" ]

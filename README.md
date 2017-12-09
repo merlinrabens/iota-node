@@ -27,6 +27,13 @@ You can specify a different API port and different UDP/TCP receiver ports by cha
 * UDP_PORT: The UDP port IRI listens on for mutually exchanging transactions.
 * TCP_PORT: The TPC port IRI listens on for mutually exchanging transactions.
 
+## Java Options
+You can specify a custom set of Java JVM arguments by adding the environment variable JAVA_OPTIONS when invoking _docker run_. Please note that you have to include the defaults for JAVA_OPTIONS if you don't want to remove them!
+
+Example:
+ `docker run [...] -e JAVA_OPTIONS="-XX:-PrintCommandLineFlags -XX:-PrintGCDetails -Xlog:gc:garbage-collection.log" bluedigits/iota-node`
+* JAVA_OPTIONS: JVM Options which are passed to the java process
+
 ## Note
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`.
 
@@ -38,6 +45,9 @@ Example:
 udp://neighbor1:14600
 udp://neighbor2:14600
 ```
+## Memory Options
+Memory options are currently not used in the image because we suggest to run without explicit memory options for java heap. Majority of memory is consumed by RocksDB and this is native memory and not limited by the -Xmx and -Xms options. So we don't want to bind physical memory to java heap which is most of the time not required by iri. The idea is to leave as much memory as possible unbound and available for RocksDB.
+To avoid native out of memory exceptions on a machine with linited resources you may add swap to survive memory peaks.
 
 ## Sync data:
 You might have a compressed backup of transaction data. If so, you can extract data into the dedicated data folder before running your node.
