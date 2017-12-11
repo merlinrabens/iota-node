@@ -13,7 +13,7 @@ RUN mvn clean package
 #
 # Execution image
 #
-FROM openjdk:9-jre-slim
+FROM openjdk:8-jre-slim
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/

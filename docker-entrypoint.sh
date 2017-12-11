@@ -10,7 +10,6 @@ exec java \
   $JAVA_OPTIONS \
   -Djava.net.preferIPv4Stack=true \
   -Dlogback.configurationFile=/iri/conf/logback.xml \
-  --add-modules java.xml.bind \
   -jar /iri/target/iri*.jar \
   --config /iri/conf/iri.ini \
   --port $API_PORT \
