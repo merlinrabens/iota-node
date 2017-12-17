@@ -47,7 +47,7 @@ udp://neighbor2:14600
 ```
 ## Memory Options
 Memory options are currently not used in the image because we suggest to run without explicit memory options for java heap. Majority of memory is consumed by RocksDB and this is native memory and not limited by the -Xmx and -Xms options. So we don't want to bind physical memory to java heap which is most of the time not required by iri. The idea is to leave as much memory as possible unbound and available for RocksDB.
-To avoid native out of memory exceptions on a machine with linited resources you may add swap to survive memory peaks.
+To avoid native out of memory exceptions on a machine with limited resources you may add swap to survive memory peaks.
 
 ## Sync data:
 You might have a compressed backup of transaction data. If so, you can extract data into the dedicated data folder before running your node.
