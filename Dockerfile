@@ -13,7 +13,7 @@ RUN mvn clean package
 #
 # Execution image
 #
-FROM openjdk:8-jre-slim
+FROM anapsix/alpine-java:8
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
@@ -31,6 +31,10 @@ ENV JAVA_OPTIONS "-XX:+DisableAttachMechanism -XX:+HeapDumpOnOutOfMemoryError"
 # (https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits)
 #
 # ENV JAVA_OPTIONS "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+
+# Default java memory settings
+ENV MIN_MEMORY 2G
+ENV MAX_MEMORY 4G
 
 # Default remote api limitations
 ENV REMOTE_API_LIMIT "attachToTangle, addNeighbors, removeNeighbors"
