@@ -13,7 +13,7 @@ RUN mvn clean package
 #
 # Execution image
 #
-FROM anapsix/alpine-java:8
+FROM openjdk:8-slim
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
