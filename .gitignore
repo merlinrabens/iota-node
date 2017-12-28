@@ -2,3 +2,4 @@ conf/neighbors
 .idea/
 *.iml
 config.sh
+scripts/Trace-Node.bat
