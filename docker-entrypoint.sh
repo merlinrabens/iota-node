@@ -8,7 +8,6 @@ neighbors=${neighbors::-1}
 
 exec java \
   $JAVA_OPTIONS \
-  -Xms$MIN_MEMORY -Xmx$MAX_MEMORY \
   -Djava.net.preferIPv4Stack=true \
   -Dlogback.configurationFile=/iri/conf/logback.xml \
   --add-modules java.xml.bind \
