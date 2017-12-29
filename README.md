@@ -1,14 +1,29 @@
 Dockerized IOTA Full Node
 =========================
 
-## Install
-`docker build -t bluedigits/iota-node .`
+This is a dockerized node for IRI, the IOTA reference implementation.
 
 ## Run
+Basically, you have two options for managing your neighbors:
+ * Manage them on your own (static neighbors file)
+ * Let Nelson do the work for you and just run IRI. Read about Nelson here: https://github.com/SemkoDev/nelson.cli
+
+We assume that you want to run IRI with Nelson managing your neighbours, as this option has some advantages.
+
+#### Prerequisites
 1. Create a folder for IRI's data, e.g. `/iri/data`
 2. Create a folder for IRI's config, e.g. `/iri/conf`
-3. Create a text file `/iri/conf/neighbors` and specify your neighbors IPs, one neighbor per line.
-4. Invoke docker run as follows:
+
+#### Option 1: Run IRI with Nelson
+1. Invoke _docker run_ as follows:
+`docker run -d --net=host --name iota-node -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data bluedigits/iota-node:latest`
+2. Invoke _docker run_ again to spin up a Nelson instance (can be skipped if you want to specify your neighbors manually):
+`docker run -d --net host -p 18600:18600 --name nelson romansemko/nelson -r localhost -i 14265 -u 14600 -t 15600 --getNeighbors`
+
+#### Option 2: Run IRI with static neighbors
+If you decide to manually manage your peers without Nelson, please do the following.
+1. Create a text file `/iri/conf/neighbors` and specify your neighbors IPs, one neighbor per line.
+2. Call the _docker run_ command as follows:
 `docker run -d --net=host --name iota-node -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data -v /iri/conf/neighbors:/iri/conf/neighbors bluedigits/iota-node:latest`
 
 ## Additional Parameters
@@ -38,7 +53,7 @@ Example:
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`.
 
 ## Neighbors
-Please specify the neighbors within your `neighbors` file by adding the udp or tcp IPs and the corresponding ports, one per line.
+If you're using Nelson you don't have manage your neighbors. However, if you want to specify your own neighbors add them to your `neighbors` file by adding the UDP or TCP IPs and the corresponding ports, one per line.
 
 Example:
 ```
@@ -49,6 +64,5 @@ udp://neighbor2:14600
 Memory options are currently not used in the image because we suggest to run without explicit memory options for java heap. Majority of memory is consumed by RocksDB and this is native memory and not limited by the -Xmx and -Xms options. So we don't want to bind physical memory to java heap which is most of the time not required by iri. The idea is to leave as much memory as possible unbound and available for RocksDB.
 To avoid native out of memory exceptions on a machine with limited resources you may add swap to survive memory peaks.
 
-## Sync data:
+## Sync Data
 You might have a compressed backup of transaction data. If so, you can extract data into the dedicated data folder before running your node.
-
