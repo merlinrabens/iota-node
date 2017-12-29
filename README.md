@@ -1,4 +1,4 @@
-# Dockerized IOTA Full Node
+# IOTA Full Node
 This is a dockerized node for IRI, the IOTA reference implementation.
 
 ## Run
