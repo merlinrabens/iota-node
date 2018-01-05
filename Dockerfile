@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /iri
 
-RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
+RUN git clone https://github.com/iotaledger/iri.git /iri/ 
+# Make sure we are on dev branch
+RUN git checkout dev
 RUN mvn clean package
 
 #
