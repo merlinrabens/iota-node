@@ -2,7 +2,7 @@ docker run -d --name iota-node \
     -p 14265:14265 -p 14777:14777/udp -p 15777:15777 \
     --env API_PORT=14265 --env UDP_PORT=14777 --env TCP_PORT=15777 \
     -v $data_volume:/iri/data -v $conf_volume:/iri/conf \
-    --env JAVA_OPTIONS="-Xmx3g" \ 
+    --env JAVA_OPTIONS="-Xmx3g" \
     --restart=always \
     bluedigits/iota-node:latest \
     "$@"
