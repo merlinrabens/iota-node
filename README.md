@@ -16,7 +16,7 @@ We assume that you want to run IRI with Nelson managing your neighbours, as this
 1. Invoke _docker run_ as follows:
 `docker run -d --net=host --name iota-node -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data bluedigits/iota-node:latest`
 2. Invoke _docker run_ again to spin up a Nelson instance (can be skipped if you want to specify your neighbors manually):
-`docker run -d --net=host -p 18600:18600 --name nelson romansemko/nelson -r localhost -i 14265 -u 14600 -t 15600 --getNeighbors`
+`docker run -d --net=host -p 18600:18600 --name nelson romansemko/nelson.cli -r localhost -i 14265 -u 14600 -t 15600 --getNeighbors`
 
 #### Option 2: Run IRI with static neighbors
 If you decide to manually manage your peers without Nelson, please do the following.
