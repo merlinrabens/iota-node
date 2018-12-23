@@ -1,19 +1,23 @@
-FROM maven:3.5-jdk-9-slim as build
-
-# Install build dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		git \
-	&& rm -rf /var/lib/apt/lists/*
-
-WORKDIR /iri
+#
+# Clone image
+#
+FROM alpine/git as clone
 
 RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
+
+#
+# Build image
+#
+FROM maven:3.5-jdk-8-alpine as build
+
+WORKDIR /iri
+COPY --from=clone /iri /iri
 RUN mvn clean package
 
 #
 # Execution image
 #
-FROM openjdk:8-slim
+FROM openjdk:8-jre-alpine
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
