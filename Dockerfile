@@ -12,7 +12,7 @@ FROM maven:3.5-jdk-8-alpine as build
 
 WORKDIR /iri
 COPY --from=clone /iri /iri
-RUN mvn clean package
+RUN mvn clean package -DskipTests=true
 
 #
 # Execution image
