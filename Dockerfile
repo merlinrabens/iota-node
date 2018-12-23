@@ -3,7 +3,7 @@
 #
 FROM alpine/git as clone
 
-RUN git clone -b master https://github.com/iotaledger/iri.git /iri/
+RUN git clone -b master https://github.com/iotaledger/iri.git /iri
 
 #
 # Build image
