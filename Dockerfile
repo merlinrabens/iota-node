@@ -17,7 +17,7 @@ RUN mvn clean package -DskipTests=true
 #
 # Execution image
 #
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-slim
 
 COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
