@@ -4,7 +4,7 @@ This is a dockerized node for IRI, the IOTA reference implementation.
 ## Run
 Basically, you have two options for managing your neighbors:
  * Manage them on your own (static neighbors file)
- * Let Nelson do the work for you and just run IRI. Read about Nelson here: https://github.com/SemkoDev/nelson.cli
+ * Let Nelson do the work for you and just run IRI. Read about Nelson here: https://gitlab.com/semkodev/nelson.cli
 
 We assume that you want to run IRI with Nelson managing your neighbours, as this option has some advantages.
 
