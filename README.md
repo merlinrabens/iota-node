@@ -54,12 +54,12 @@ Example:
 The syncing process takes a while so be patient. You can watch the logging with: `docker logs iota-node -f`.
 
 ## Neighbors
-If you're using Nelson you don't have manage your neighbors. However, if you want to specify your own neighbors add them to your `neighbors` file by adding the UDP or TCP IPs and the corresponding ports, one per line.
+If you're using Nelson you don't have manage your neighbors. However, if you want to specify your own neighbors add them to your `neighbors` file by adding the TCP IPs and the corresponding ports, one per line.
 
 Example:
 ```
-udp://neighbor1:14600
-udp://neighbor2:14600
+tcp://neighbor1:14600
+tcp://neighbor2:14600
 ```
 ## Memory Options
 Memory options are currently not used in the image because we suggest to run without explicit memory options for java heap. Majority of memory is consumed by RocksDB and this is native memory and not limited by the -Xmx and -Xms options. So we don't want to bind physical memory to java heap which is most of the time not required by iri. The idea is to leave as much memory as possible unbound and available for RocksDB.
