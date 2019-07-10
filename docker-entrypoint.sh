@@ -13,10 +13,10 @@ exec java \
   -Dlogback.configurationFile=/iri/conf/logback.xml \
   -jar /iri/target/iri*.jar \
   --config /iri/conf/iri.ini \
+  --neighboring-socket-address ${TCP_SOCKET_ADDRESS} \
+  --neighboring-socket-port ${TCP_PORT} \
   --port $API_PORT \
-  --udp-receiver-port $UDP_PORT \
-  --tcp-receiver-port $TCP_PORT \
   --remote=true --remote-limit-api "$REMOTE_API_LIMIT" \
   --neighbors "$neighbors" \
   "$@"
-  
+

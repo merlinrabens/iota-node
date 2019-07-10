@@ -23,11 +23,12 @@ COPY --from=build /iri/target/iri*.jar /iri/target/
 COPY conf/* /iri/conf/
 COPY docker-entrypoint.sh /
 
-# Allow change of ports in the container.
-# See Issue #2 for description why this is needed (https://github.com/bluedigits/iota-node/issues/2)
+# Allow change of ports in the container. 
 ENV API_PORT 14265
-ENV UDP_PORT 14600
-ENV TCP_PORT 15600
+ENV TCP_PORT 15600 
+
+# Allow change of bind address
+ENV TCP_SOCKET_ADDRESS "0.0.0.0"
 
 # Default jvm arguments
 ENV JAVA_OPTIONS "-XX:+DisableAttachMechanism -XX:+HeapDumpOnOutOfMemoryError"
@@ -45,7 +46,6 @@ ENV REMOTE_API_LIMIT "attachToTangle, addNeighbors, removeNeighbors"
 
 # Mark ports for expose
 EXPOSE $API_PORT
-EXPOSE $UDP_PORT/UDP
 EXPOSE $TCP_PORT
 
 WORKDIR /iri/data
